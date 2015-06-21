@@ -510,10 +510,12 @@ class %s extends %s
         $setters = array();
         $getters = array();
         foreach ($fields as $field) {
+            if (array_key_exists(strtolower($field->getName()), $exclude)) {
+                continue;
+            }
             $type = $this->getPHPType($field->getType());
             if ($useSettersGetters) {
 
-                if (!array_key_exists(strtolower($field->getName()), $exclude)) {
                     $attributes[] = sprintf(
                         $templateAttributes, $type, 'protected', $field->getName()
                     );
@@ -548,7 +550,6 @@ class %s extends %s
                             $field->getName()
                         );
                     }
-                }
             } else {
                 $attributes[] = sprintf(
                     $templateAttributes, $type, 'public', $field->getName()
