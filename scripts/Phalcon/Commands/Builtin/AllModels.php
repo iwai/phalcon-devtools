@@ -100,6 +100,7 @@ class AllModels extends Command implements CommandsInterface
             'namespace' => $this->getOption('namespace'),
             'directory' => $this->getOption('directory'),
             'foreignKeys' => $this->isReceivedOption('fk'),
+            'genValidations' => $this->isReceivedOption('validations'),
             'defineRelations' => $this->isReceivedOption('relations'),
             'genSettersGetters' => $this->isReceivedOption('get-set'),
             'genDocMethods' => $this->isReceivedOption('doc')

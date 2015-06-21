@@ -73,6 +73,12 @@ class AllModels extends Component
             $defineForeignKeys = false;
         }
 
+        if (isset($this->_options['genValidations'])) {
+            $genValidations = $this->_options['genValidations'];
+        } else {
+            $genValidations = false;
+        }
+
         if (isset($this->_options['genSettersGetters'])) {
             $genSettersGetters = $this->_options['genSettersGetters'];
         } else {
@@ -194,6 +200,7 @@ class AllModels extends Component
                     'hasMany' => $hasManyModel,
                     'belongsTo' => $belongsToModel,
                     'foreignKeys' => $foreignKeysModel,
+                    'genValidations' => $genValidations,
                     'genSettersGetters' => $genSettersGetters,
                     'directory' => $this->_options['directory'],
                 ));

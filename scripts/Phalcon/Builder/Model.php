@@ -557,7 +557,7 @@ class %s extends %s
             }
         }
 
-        if ($alreadyValidations == false) {
+        if ($alreadyValidations == false && $this->_options['genValidations']) {
             if (count($validations) > 0) {
                 $validationsCode = sprintf(
                     $templateValidations, join("", $validations)
