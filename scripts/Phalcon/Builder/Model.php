@@ -300,6 +300,13 @@ class %s extends %s
             $namespace = '';
         }
 
+        if (isset($this->_options['relationsNamespace'])) {
+            $relationsNamespace = 'namespace ' . $this->_options['relationsNamespace'] . ';'
+                . PHP_EOL . PHP_EOL;
+        } else {
+            $relationsNamespace = $namespace;
+        }
+
         $useSettersGetters = $this->_options['genSettersGetters'];
         if (isset($this->_options['genDocMethods'])) {
             $genDocMethods = $this->_options['genDocMethods'];
@@ -366,7 +373,11 @@ class %s extends %s
                     if (is_string($relation['fields'])) {
                         $entityName = $relation['camelizedName'];
                         if (isset($this->_options['namespace'])) {
-                            $entityNamespace = "{$this->_options['namespace']}\\";
+                            if (isset($this->_options['relationsNamespace'])) {
+                                $entityNamespace = "{$this->_options['relationsNamespace']}\\";
+                            } else {
+                                $entityNamespace = "{$this->_options['namespace']}\\";
+                            }
                             $relation['options']['alias'] = $entityName;
                         } else {
                             $entityNamespace = '';
@@ -390,7 +401,11 @@ class %s extends %s
                     if (is_string($relation['fields'])) {
                         $entityName = $relation['referencedModel'];
                         if (isset($this->_options['namespace'])) {
-                            $entityNamespace = "{$this->_options['namespace']}\\";
+                            if (isset($this->_options['relationsNamespace'])) {
+                                $entityNamespace = "{$this->_options['relationsNamespace']}\\";
+                            } else {
+                                $entityNamespace = "{$this->_options['namespace']}\\";
+                            }
                             $relation['options']['alias'] = $entityName;
                         } else {
                             $entityNamespace = '';
