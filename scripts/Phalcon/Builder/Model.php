@@ -197,7 +197,7 @@ class Model extends Component
      */
     public function initialize()
     {
-        if (function_exists('parent::initialize')) {
+        if (method_exists(get_parent_class(\$this), 'initialize')) {
             parent::initialize();
         }
 %s
